@@ -4,13 +4,14 @@ pipeline{
         stage("init") {
             steps {
                 sh 'cp /Users/pavankumar/terraform-jenkins/terraform-jenkins/var.auto.tfvars .'
-                sh 'terraform version'
+                sh 'terraform init'
+                sh 'terraform plan'
             }
         }
 
         stage("apply") {
             steps {
-                sh 'terraform version'
+                sh 'terraform apply'
             }
         }
     }
