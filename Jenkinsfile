@@ -14,5 +14,21 @@ pipeline{
                 sh 'terraform apply'
             }
         }
+
     }
+
+    post {
+    always {
+        deleteDir()
+        dir("${env.WORKSPACE}@tmp") {
+            deleteDir()
+        }
+        dir("${env.WORKSPACE}@script") {
+            deleteDir()
+        }
+        dir("${env.WORKSPACE}@script@tmp") {
+            deleteDir()
+        }
+    }
+}
 }
