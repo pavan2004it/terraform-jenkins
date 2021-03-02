@@ -21,11 +21,29 @@ pipeline{
             }
         }
 
+        stage("build"){
+            steps{
+                script{
+                    gv.buildApp()
+                }
+                echo "Executing Playbook"
+                ansiColor('xterm'){
+                    ansiblePlaybook(
+                    installation: 'ansible',
+                    inventory: '/opt/ansible/inventory/aws_ec2.yaml',
+                    playbook: 'sample.yaml',
+                    colorized: true
+                )
+                }
+            }
+        }
+
         stage("cleanup"){
             steps {
                 sh 'terraform destroy -auto-approve'
             }
         }
+
 
     }
 
