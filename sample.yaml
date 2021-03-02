@@ -1,0 +1,13 @@
+---
+
+- name: Check connectivity
+  hosts: tag_Environment_dev
+  tasks:
+  - name: Return ping status
+    ansible.builtin.ping:
+      data: hello world
+    register: pongdom
+  - name: Print ping status
+    debug:
+      var: pongdom
+            
