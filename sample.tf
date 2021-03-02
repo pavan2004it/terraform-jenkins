@@ -27,6 +27,6 @@ resource "aws_instance" "test" {
   instance_type = "t2.micro"
   key_name = "tf-test"
   tags = {
-      Name = "test"
+      Environment = "dev",
   }
 }
