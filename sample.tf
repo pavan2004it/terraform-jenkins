@@ -1,7 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
 }
 
 data "aws_ami" "amazon-linux-2" {
@@ -26,7 +24,7 @@ resource "aws_instance" "test" {
   associate_public_ip_address = true
   instance_type = "t2.medium"
   key_name = "tf-test"
-  vpc_security_group_ids = [ "aws_security_group.ansi.id" ]
+  vpc_security_group_ids = [aws_security_group.ansi.id]
   tags = {
       Environment = "dev"
       Name = "test"
