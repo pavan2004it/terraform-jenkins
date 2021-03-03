@@ -23,9 +23,6 @@ pipeline{
 
         stage("build"){
             steps{
-                script{
-                    gv.buildApp()
-                }
                 echo "Executing Playbook"
                 ansiColor('xterm'){
                     ansiblePlaybook(
