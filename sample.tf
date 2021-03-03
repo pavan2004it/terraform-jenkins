@@ -22,11 +22,16 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 resource "aws_instance" "test" {
-  ami = "${data.aws_ami.amazon-linux-2.id}"
+  ami = "ami-0b1eccece9c5c5768"
   associate_public_ip_address = true
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
   key_name = "tf-test"
   tags = {
       Environment = "dev",
   }
+}
+
+resource "time_sleep" "wait_time" {
+  depends_on = [ aws_instance.test ]
+  create_duration = "2m"
 }
