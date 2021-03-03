@@ -54,5 +54,5 @@ resource "aws_security_group" "ansi" {
 
 resource "time_sleep" "wait_time" {
   depends_on = [ aws_instance.test ]
-  create_duration = "4m"
+  create_duration = "2m"
 }
