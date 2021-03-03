@@ -27,11 +27,12 @@ resource "aws_instance" "test" {
   instance_type = "t2.medium"
   key_name = "tf-test"
   tags = {
-      Environment = "dev",
+      Environment = "dev"
+      Name = "test"
   }
 }
 
 resource "time_sleep" "wait_time" {
   depends_on = [ aws_instance.test ]
-  create_duration = "2m"
+  create_duration = "4m"
 }
